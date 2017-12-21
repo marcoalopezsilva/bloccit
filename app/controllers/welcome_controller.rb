@@ -6,4 +6,9 @@ class WelcomeController < ApplicationController
 
   def about
   end
+  
+  #Added this 'action' for the 'contact' view
+  def contact
+  end
+  
 end
