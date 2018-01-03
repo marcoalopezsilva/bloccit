@@ -3,3 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // By Rails convention, each controller has a corresponding stylesheet and view
+.social-btn {
+    width: 10rem;
+    height: 3rem;
+    color: white;
+    border: 1px;
+    box-shadow: 1px 1px 5px gray;
+}
