@@ -3,6 +3,12 @@ class PostsController < ApplicationController
       # We declare an instance variable (called '@posts') and assign it a collection of Post object using the 'all' method provided by 'ActiveRecord'
       # 'all' returns a collection of Post objects
       @posts = Post.all
+      @posts.each_with_index do |post,index|
+          if index == 0 || index%4 == 0
+              post.title = "SPAM"
+              #@posts[index].title = "SPAM"
+          end
+      end
   end
 
   def show
