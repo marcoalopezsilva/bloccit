@@ -18,6 +18,21 @@
             <li> <%= link_to "Bloccit", root_path %></li>
             <li> <%= link_to "About", about_path %></li>
         </ul>
+
+        <% if flash[:notice] %>
+            <div class="alert alert-success">
+                <!-- Ask Wilson: why is '&times' used in the next line? -->
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <!-- NL seems to be necessary to print the contents of flash[:notice] -->
+                <%= flash[:notice] %>
+            </div>
+        <% elsif flash[:alert] %>
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= flash[:alert] %>
+            </div>
+        <%end %>
+
         <%= yield %>
     </div>
 
