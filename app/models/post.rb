@@ -2,5 +2,6 @@
 # ApplicationRecord essentially handles interaction with the database and allows us to persist data through our class
 class Post < ApplicationRecord
     # In next line, 'dependent: destroy' does a cascade delete
+    belongs_to :topic
     has_many :comments, dependent: :destroy
 end
