@@ -13,7 +13,7 @@
     <div class="col-md-8">
         <!-- 'form_for' is a Rails helper method that generates HTML code, allowing the user to submit a post title and body-->
         <!-- Generates an object called 'f' (could be named whatever)-->
-        <%= form_for @post do |f| %>
+        <%= form_for [@post.topic, @post] do |f| %>
             <div class="form-group">
             <!-- we use f.label to display title. This functionality is provided by form_for, which yields a form builder object that, in turn, provides f.label.-->
             <!-- f.label, in turn, creates an HTML 'label' tag for the object that is specified-->
