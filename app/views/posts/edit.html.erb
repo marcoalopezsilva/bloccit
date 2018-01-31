@@ -10,18 +10,11 @@
             </ul>
         </div>
         <div class="col-md-8">
-            <%= form_for [@post.topic, @post] do |f| %>
-                <div class="form-group">
-                    <%= f.label :title %>
-                    <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
-                </div>
-                <div class="form-group">
-                    <%= f.label :body %>
-                    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
-                </div>
-                <div class="form-group">
-                    <%= f.submit "Save", class: 'btn btn-success' %>
-                </div>
-            <% end %>
+          <!-- Partials are fragments of view code, which are called from views.-->
+          <!--Partials are called with the render method. Rendering a partial is like copying and pasting view code from another file. -->
+          <!-- Next line searches for (and runs) a file named '_form.html.erb' with specific values set at the 'locals' block-->
+          <!-- @post.topic and @post are assigned to topic and post, respectively. This means we can refer to these local variables, rather than the @post instance variable -->
+          <%= render partial: 'form', locals: { topic: @post.topic, post: @post } %>
         </div>
+
     </div>
