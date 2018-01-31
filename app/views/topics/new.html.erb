@@ -10,22 +10,6 @@
          </ul>
     </div>
     <div class="col-md-8">
-      <!-- Next block used 'f' but I substituted with 'field' to make sure I understand how it works-->
-      <%= form_for @topic do |field| %>
-        <div class="form-group">
-          <%= field.label :name %>
-          <%= field.text_field :name, class: 'form-control', placeholder: "Enter topic name" %>
-        </div>
-        <div class="form-group">
-          <%= field.label :description %>
-          <%= field.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter topic description" %>
-        </div>
-        <div class="form-group">
-          <%= field.label :public, class: 'checkbox' do %>
-            <%= field.check_box :public %> Public topic
-          <% end %>
-       </div>
-          <%= field.submit "Save", class: 'btn btn-success' %>
-          <% end %>
+        <%= render partial: 'form', locals: {topic: @topic} %>
     </div>
  </div>
