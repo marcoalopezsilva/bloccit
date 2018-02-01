@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Callbacks are hooks into the life cycle of an Active Record object that allow you to trigger logic before or after an alteration of the object state.
   #  User is requesting that the database execute { self.email = email.downcase }
   before_save { self.email = email.downcase if email.present? }
+  before_save :cap_name
 
   validates :name, length: { minimum: 1, maximum: 100}, presence: true
 
@@ -19,5 +20,17 @@ class User < ApplicationRecord
   # has_secure_password creates two virtual attributes, password and  password_confirmation that we use to set and save the password.
   # To use has_secure_password, we need to install BCrypt
   has_secure_password
+
+  def cap_name
+    # Next line seems to be required because part of the tests (the last block) assigns a blank name - check
+    if name
+      split_name = []
+      split_name = name.split
+        for item in split_name do
+          item.capitalize!
+        end
+        self.name = split_name.join(" ")
+    end
+  end
 
 end
