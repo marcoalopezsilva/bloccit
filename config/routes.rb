@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     get 'about' => 'welcome#about'
 
-    post 'confirm' => 'users#confirm'
+    post 'users/confirm' => 'users#confirm'
 
     root "welcome#index"
 end
