@@ -51,3 +51,5 @@ source 'https://rubygems.org'
  end
 
  gem 'bootstrap-sass'
+
+ gem 'bcrypt'
