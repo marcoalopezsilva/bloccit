@@ -26,6 +26,7 @@
   <div class="col-md-4">
     <!--%= link_to "New Post", new_post_path(@topic), class: 'btn btn-success' %-->
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
-    <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this topic?' } %>
+    <!-- I don't know how nex line ended up here, but I don't think it should go here, so I commented it out -->
+    <!--%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this topic?' } %-->
   </div>
 </div>
