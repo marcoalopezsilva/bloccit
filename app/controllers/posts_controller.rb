@@ -1,11 +1,6 @@
 class PostsController < ApplicationController
 
-  #posts.index is no longer needed because they are shown nested to topics
-  #def index
-      # We declare an instance variable (called '@posts') and assign it a collection of Post object using the 'all' method provided by 'ActiveRecord'
-      # 'all' returns a collection of Post objects
-      #@posts = Post.all
-  #end
+  before_action :require_sign_in, except: :show
 
   def show
         @post = Post.find(params[:id])
@@ -17,16 +12,12 @@ class PostsController < ApplicationController
   end
 
   def create
-      # We call Post.new to create a new instance of Post
-      @post = Post.new
-      @post.title = params[:post][:title]
-      @post.body = params[:post][:body]
       @topic = Topic.find(params[:topic_id])
-      @post.topic = @topic
+      @post = @topic.posts.build(post_params)
+      @post.user = current_user
+
       if @post.save
-          # The flash hash provides a way to pass temporary values between actions. Any value placed in flash will be available in the next action and then deleted
           flash[:notice] = "Post was saved."
-          # Redirecting to @post will direct the user to the posts 'show' view
           redirect_to [@topic, @post]
       else
           flash.now[:alert] = "There was an error saving the post. Please try again"
@@ -40,8 +31,7 @@ class PostsController < ApplicationController
 
   def update
       @post = Post.find(params[:id])
-      @post.title = params[:post][:title]
-      @post.body = params[:post][:body]
+      @post.assign_attributes(post_params)
       if @post.save
           flash[:notice] = "Post was updated."
           redirect_to [@post.topic, @post]
@@ -61,4 +51,10 @@ class PostsController < ApplicationController
           render :show
       end
   end
+
+  private
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
+
 end
