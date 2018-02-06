@@ -1,5 +1,9 @@
 class TopicsController < ApplicationController
 
+  #We redirect guest users who attempt to access controller actions other than :index or :show
+  before_action :require_sign_in, except: [:index, :show]
+  before_action :authorize_user, except: [:index, :show]
+
     def index
         @topics = Topic.all
     end
@@ -52,8 +56,16 @@ class TopicsController < ApplicationController
    end
 
    private
+
     def topic_params
       params.require(:topic).permit(:name, :description, :public)
+    end
+
+    def authorize_user
+      unless current_user.admin?
+        flash[:alert] = "You must be an admin to do that!"
+        redirect_to topics_path
+      end
     end
 
 end
