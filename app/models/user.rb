@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   before_save { self.email = email.downcase if email.present? }
   #NL is the same as: self.role = :member if self.role.nil? It says: check if self.role exists; if not, set it to ':member'
@@ -18,5 +19,5 @@ class User < ApplicationRecord
   has_secure_password
 
   enum role: [:member, :admin]
-  
+
 end
