@@ -7,6 +7,7 @@ class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     # We can see how many votes have been cast on a post by calling post.votes, thanks to the has_many :votes declaration in Post.
     has_many :votes, dependent: :destroy
+    has_many :favorites, dependent: :destroy
 
     # The default_scope will order all posts by their created_at date, in descending order
     default_scope { order('rank DESC') }
