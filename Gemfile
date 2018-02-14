@@ -8,6 +8,9 @@ source 'https://rubygems.org'
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '~> 5.1.2'
 
+ #Figaro is a gem used to mask sensitive data
+ gem 'figaro', '1.0'
+
  # This block and the next one specify different databases for Development and Production
  group :production do
    # Use pg as the production database for Active Record. pg = Postgres
