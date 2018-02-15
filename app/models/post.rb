@@ -17,6 +17,8 @@ class Post < ApplicationRecord
     validates :topic, presence: true
     validates :user, presence: true
 
+    after_create :fav_post_and_user
+
     def up_votes
       #Here we could have written 'self.votes'
       #This fetches a collection of votes with a value of 1. We then call count on the collection to get a total of all up votes.
@@ -35,6 +37,14 @@ class Post < ApplicationRecord
      age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
      new_rank = points + age_in_days
      update_attribute(:rank, new_rank)
+   end
+
+   private
+
+   def fav_post_and_user
+       self.favorites.create!
+       self.user.favorites.create!
+       FavoriteMailer.new_post(self.user, self)
    end
 
 end

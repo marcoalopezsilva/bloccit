@@ -1,0 +1,4 @@
+You ghave automatically favorite your post titled "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+
+ Visit online at: <%= post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
