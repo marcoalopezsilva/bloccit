@@ -42,9 +42,8 @@ class Post < ApplicationRecord
    private
 
    def fav_post_and_user
-       self.favorites.create!
-       self.user.favorites.create!
-       FavoriteMailer.new_post(self.user, self)
+       Favorite.create(post: self, user: self.user)
+       FavoriteMailer.new_post(self.user, self).deliver_now
    end
 
 end

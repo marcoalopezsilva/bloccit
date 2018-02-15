@@ -1,4 +1,3 @@
-You ghave automatically favorite your post titled "<%= @post.title %>"
- <%= "=" * (@post.title.length + 12) %>
+You have automatically favorited, and are following, your post titled "<%= @post.title %>"
 
- Visit online at: <%= post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
+Visit online at: <%= topic_post_url(@post.topic, @post) %>

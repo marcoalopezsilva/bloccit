@@ -6,9 +6,7 @@
    <body>
      <h1>You have automatically favorited your post titled "<%= @post.title %>"</h1>
      <p>
-        <!-- '_url' is necessary for Rails to generate an absolute path (email recipient will not necessarily be at the app when she receives the email)-->
-        <!-- The next line requires an anchor, which we need to generate at the _comment.html.erb view as an 'id'-->
-       <%= link_to "View Post on site", post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
+       <%= link_to "View Post on site", topic_post_url(@post.topic, @post) %>
      </p>
    </body>
  </html>

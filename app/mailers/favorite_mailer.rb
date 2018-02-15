@@ -13,11 +13,12 @@ class FavoriteMailer < ApplicationMailer
     end
 
     def new_post(user, post)
-        headers["In-Reply-To"] = "<post/#{post.id}@my_bloccit.com"
-        headers["References"] = "<post/#{post.id}@my_bloccit.com"
+        headers["Message-ID"] = "<post/#{post.id}@my_bloccit.com>"
+        headers["In-Reply-To"] = "<post/#{post.id}@my_bloccit.com>"
+        headers["References"] = "<post/#{post.id}@my_bloccit.com>"
         @user = user
         @post = post
-        mail(to: user.email, subject: "You have automatically favorited your post titled #{post.title}")
+        mail(to: user.email, subject: "You have automatically favorited, and are following, your post titled #{post.title}")
     end
 
 end
