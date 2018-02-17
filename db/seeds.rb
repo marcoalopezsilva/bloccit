@@ -59,6 +59,12 @@ end
    password: 'helloworld'
  )
 
+#Create additional user
+test_user = User.create!(
+  name:     'Marco',
+  email:    'mlopez@c-230.com',
+  password: 'helloworld'
+)
 
 puts "Seed finished"
 puts "#{User.count} users created"
