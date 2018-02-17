@@ -54,4 +54,25 @@ RSpec.describe UsersController, type: :controller do
          end
      end
 
+    describe "not signed in" do
+       # We build a variable named factory_user using create(:user). A factory in programming is an object that creates other types of objects on demand.
+       # Our factory creates User objects. Because we use create and not build, our objects is persisted to the database.
+       let(:factory_user) {create(:user)}
+       before do
+         post :create, params: {user: new_user_attributes}
+       end
+       it "returns http success" do
+         get :show, params: {id: factory_user.id}
+         expect(response).to have_http_status(:success)
+       end
+       it "renders the #show view" do
+         get :show, params: {id: factory_user.id}
+         expect(response).to render_template :show
+       end
+       it "assigns factory_user to @user" do
+         get :show, params: {id: factory_user.id}
+         expect(assigns(:user)).to eq(factory_user)
+       end
+     end
+
 end
