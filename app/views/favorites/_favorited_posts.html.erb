@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-8">
+      <ul>
+        <% user.favorites.each do |fav| %>
+          <li><%= "#{fav.post.title}" %> |
+          <b>Author: </b> <%="#{fav.post.user.name}" %> |
+          <% author_avatar_url = fav.post.user.avatar_url(18) %>
+          <% if author_avatar_url %>
+            <div class="pull-right">
+              <%= image_tag author_avatar_url, class: 'media-object' %>
+            </div>
+          <% end %>
+          <%= "#{fav.post.comments.count} comments" %> |
+          <%= "#{fav.post.votes.count} votes" %>
+          <br>
+        <% end %>
+      </li>
+    </div>
+</div>
